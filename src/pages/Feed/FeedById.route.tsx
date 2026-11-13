@@ -1,9 +1,7 @@
 import { data } from 'react-router';
 
 import {
-    fetchFirstPublished,
-    fetchNextPublished,
-    fetchPublishedById
+    fetchFirstPublished, fetchNextPublished, fetchPublishedById
 } from '@/entities/Isotope/api/requests';
 
 import FeedPage from './Feed';

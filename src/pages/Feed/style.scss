@@ -1,14 +1,18 @@
-.page--feed .navigation {
-    z-index: 20;
-    margin-top: 24px;
-}
+.page--feed {
+    gap: 24px;
 
-.page--feed .like {
-    width: 42px;
-    padding-block: 4px;
-    background-color: var(--surface-1);
-    border: 1px solid var(--border-main);
-    border-radius: 8px;
+    .like {
+        width: 42px;
+        padding-block: 4px;
+        background-color: var(--surface-1);
+        border: 1px solid var(--border-main);
+        border-radius: 8px;
+    }
+
+    .navigation {
+        z-index: 20;
+        margin-top: auto;
+    }
 }
 
 .isotope-page {

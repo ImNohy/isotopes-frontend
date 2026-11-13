@@ -3,7 +3,7 @@ import './style.scss';
 import { useState } from 'react';
 import { Link } from 'react-router';
 
-import { FallbackVideo } from '@/shared/ui/FallbackVideo/FallbackVideo';
+import FallbackVideo from '@/shared/ui/FallbackVideo/FallbackVideo';
 import LikeToggle from '@/shared/ui/LikeToggle/LikeToggle';
 import { makeClassString } from '@/shared/utils/makeClassString';
 

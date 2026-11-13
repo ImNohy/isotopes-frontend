@@ -3,7 +3,7 @@ import './style.scss';
 import { useState } from 'react';
 import { Link } from 'react-router';
 
-import { FallbackImage } from '@/shared/ui/FallbackImage/FallbackImage';
+import FallbackImage from '@/shared/ui/FallbackImage/FallbackImage';
 import LikeToggle from '@/shared/ui/LikeToggle/LikeToggle';
 
 import type { IsotopeCardProps } from "./types";

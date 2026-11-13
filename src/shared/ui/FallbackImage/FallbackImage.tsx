@@ -2,8 +2,8 @@ import { useState } from 'react';
 
 import type { FallbackImageProps } from "./types";
 
-export function FallbackImage({
-    src,
+export default function FallbackImage({
+    src = null,
     fallbackSrc,
     className,
     ...imageProps

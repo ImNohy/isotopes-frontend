@@ -1,5 +1,5 @@
 import type { IsotopeView } from "@/entities/Isotope/types";
 
-export type AddPageProps = {
+export type PublishDraftPageProps = {
     isotopeDraft: IsotopeView;
 };

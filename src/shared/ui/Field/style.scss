@@ -4,7 +4,8 @@
     @include form-field;
 
     &__input {
-        height: 32px;
+        min-height: 32px;
+        flex-grow: 1;
 
         &[type="number"] {
             -moz-appearance: textfield;

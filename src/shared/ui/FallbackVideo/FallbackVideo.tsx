@@ -2,8 +2,8 @@ import { useState } from 'react';
 
 import type { FallbackVideoProps } from "./types";
 
-export function FallbackVideo({
-    src,
+export default function FallbackVideo({
+    src = null,
     fallbackSrc,
     className,
     ...videoProps
