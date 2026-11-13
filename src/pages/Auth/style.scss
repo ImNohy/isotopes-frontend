@@ -1,0 +1,49 @@
+.page--auth {
+    .navigation {
+        margin-top: auto;
+    }
+}
+
+.form {
+    display: flex;
+    margin-top: auto;
+    padding: 24px 12px;
+    flex-direction: column;
+    gap: 32px;
+    background-color: var(--surface-1);
+    border: 1px solid var(--border-main);
+    border-radius: 8px;
+
+    &__submit {
+        padding: 8px;
+        color: var(--primary);
+        background-color: var(--surface-primary);
+        border: 1px solid var(--border-primary);
+        border-radius: 8px;
+
+        box-shadow: var(--box-shadow-small);
+        transition:
+            box-shadow var(--transition-short) var(--transition-timing-function),
+            filter var(--transition-short) var(--transition-timing-function),
+            transform var(--transition-short) var(--transition-timing-function);
+
+        &:hover {
+            filter: brightness(1.2);
+        }
+
+        &:active {
+            box-shadow: var(--box-shadow-main);
+            transform: translateY(1px);
+        }
+    }
+
+    &__fields {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    &__field {
+        height: 64px;
+    }
+}

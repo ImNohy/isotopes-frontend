@@ -13,7 +13,7 @@ export type NavItem = {
     access: Access;
 };
 
-const BASE = 'isotopes';
+export const BASE = 'isotopes';
 
 const NAV_ITEMS: NavItem[] = [
     {
@@ -26,16 +26,16 @@ const NAV_ITEMS: NavItem[] = [
         access: Access.Everyone,
         iconUrl: '/icons/grid.svg',
     },
-    // {
-    //     to: 'add',
-    //     access: Access.Auth,
-    //     iconUrl: '/icons/circle-plus.svg',
-    // },
-    // {
-    //     to: 'auth',
-    //     access: Access.Guest,
-    //     iconUrl: '/icons/bin.svg',
-    // },
+    {
+        to: 'draft',
+        access: Access.Auth,
+        iconUrl: '/icons/circle-plus.svg',
+    },
+    {
+        to: 'auth',
+        access: Access.Guest,
+        iconUrl: '/icons/profile.svg',
+    },
 ]
 
 export function getVisibleNavItems(isGuest: boolean) {
