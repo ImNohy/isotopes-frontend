@@ -1,16 +1,16 @@
 import { data } from 'react-router';
 
-import { fetchFirstPublished } from '@/entities/Isotope/api/requests';
+import { fetchNextIsotopeThunk } from '@/entities/Isotope/model/thunks';
+import { store } from '@/shared/redux/store';
 
 import FeedPage from './Feed';
 
-import type { Route } from "./+types/Feed.route"
 export const handle = {
     pageClass: "page--feed isotope-page",
 };
 
-export async function loader() {
-    const isotope = await fetchFirstPublished();
+export async function clientLoader() {
+    const isotope = await store.dispatch(fetchNextIsotopeThunk(0)).unwrap();
 
     if (isotope === null) {
         throw data(
@@ -22,15 +22,9 @@ export async function loader() {
         )
     }
 
-    return {
-        isotope,
-    }
+    return null
 }
 
-export default function FeedRoute({
-    loaderData,
-}: Route.ComponentProps) {
-    return <FeedPage
-        isotope={loaderData.isotope}
-    />
+export default function FeedRoute() {
+    return <FeedPage/>
 }

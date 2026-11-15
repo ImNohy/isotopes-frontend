@@ -4,4 +4,5 @@ export type LikeToggleProps = {
     isHorizontal?: boolean;
     className?: string;
     onToggle: () => Promise<void> | void;
+    disabled: boolean;
 }

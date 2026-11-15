@@ -1,4 +1,4 @@
-@import './variables.css';
+@use './variables.scss';
 
 * {
     font-family: 'Manrope';
@@ -49,4 +49,19 @@ body {
     padding: 16px 20px;
     flex-direction: column;
     background-color: var(--surface-0);
+}
+
+.notification {
+    position: absolute;
+    inset: 20px 12px auto;
+    z-index: 1000;
+    padding: 4px 8px;
+    background-color: var(--surface-danger);
+    border: 1px solid var(--border-danger);
+    border-radius: 8px;
+
+    &__header,
+    &__content {
+        color: var(--status-danger);
+    }
 }

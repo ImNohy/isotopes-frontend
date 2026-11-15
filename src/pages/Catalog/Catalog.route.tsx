@@ -1,4 +1,6 @@
-import { fetchAllPublished } from '@/entities/Isotope/api/requests';
+import { setExponent } from '@/entities/Isotope/model/slice';
+import { fetchIsotopesThunk } from '@/entities/Isotope/model/thunks';
+import { store } from '@/shared/redux/store';
 
 import CatalogPage from './Catalog';
 
@@ -8,7 +10,9 @@ export const handle = {
 };
 
 
-export async function loader({ request }: Route.LoaderArgs) {
+export async function clientLoader({
+    request
+}: Route.ClientLoaderArgs) {
     const url = new URL(request.url);
     const rawExponent = url.searchParams.get('maxHalfLifeExponent');
 
@@ -19,28 +23,17 @@ export async function loader({ request }: Route.LoaderArgs) {
 
     const maxHalfLifeExponent =
         Number.isInteger(parsedExponent)
-            && parsedExponent >= -1
+            && parsedExponent > -1
             && parsedExponent <= 27
             ? parsedExponent
-            : -1
+            : undefined
 
-    let limit = undefined;
+    store.dispatch(setExponent(maxHalfLifeExponent));
+    await store.dispatch(fetchIsotopesThunk()).unwrap();
 
-    if (maxHalfLifeExponent !== -1) {
-        limit = 10n ** BigInt(maxHalfLifeExponent);
-    }
-
-    return {
-        isotopes: await fetchAllPublished(limit),
-        maxHalfLifeExponent,
-    };
+    return null;
 }
 
-export default function CatalogRoute({
-    loaderData,
-}: Route.ComponentProps) {
-    return <CatalogPage
-        isotopes={loaderData.isotopes}
-        maxHalfLifeExponent={loaderData.maxHalfLifeExponent}
-    />
+export default function CatalogRoute() {
+    return <CatalogPage />
 }

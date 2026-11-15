@@ -1,57 +1,56 @@
 import { data } from 'react-router';
 
-import {
-    fetchFirstPublished, fetchNextPublished, fetchPublishedById
-} from '@/entities/Isotope/api/requests';
+import { fetchIsotopeByIdThunk, fetchNextIsotopeThunk } from '@/entities/Isotope/model/thunks';
+import { store } from '@/shared/redux/store';
 
 import FeedPage from './Feed';
 
 import type { Route } from "./+types/FeedById.route"
-import type { IsotopeView } from "@/entities/Isotope/types";
+import type { IsotopeView } from '@/entities/Isotope/types';
 export const handle = {
     pageClass: "page--feed isotope-page",
 };
 
-export async function loader({
+export async function clientLoader({
     request,
     params,
-}: Route.LoaderArgs) {
-    let isotope: IsotopeView | null;
+}: Route.ClientLoaderArgs) {
     const isotopeId = Number(params.isotopeId);
 
     const url = new URL(request.url);
     const isNext = url.searchParams.get('next') === 'true';
 
-    if (isNext) {
-        isotope = await fetchNextPublished(isotopeId);
+    const action = isNext
+        ? fetchNextIsotopeThunk(isotopeId)
+        : fetchIsotopeByIdThunk(isotopeId);
 
-        if (isotope === null) {
-            isotope = await fetchFirstPublished();
-        }
+    let isotope: IsotopeView | null;
 
-    } else {
-        isotope = await fetchPublishedById(isotopeId);
+    try {
+        isotope = await store.dispatch(action).unwrap();
+
+    } catch {
+        throw data(
+            null,
+            {
+                status: 500,
+                statusText: 'Ошибка загрузки'
+            }
+        );
     }
-
     if (isotope === null) {
         throw data(
             null,
             {
-                statusText: 'Изотоп не найден',
-                status: 404
+                status: 404,
+                statusText: 'Изотоп не найден'
             }
-        )
+        );
     }
 
-    return {
-        isotope,
-    }
+    return null;
 }
 
-export default function FeedByIdRoute({
-    loaderData,
-}: Route.ComponentProps) {
-    return <FeedPage
-        isotope={loaderData.isotope!}
-    />
+export default function FeedByIdRoute() {
+    return <FeedPage/>
 }

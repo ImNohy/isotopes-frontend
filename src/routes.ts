@@ -11,6 +11,9 @@ export default [
         route("catalog", "./pages/Catalog/Catalog.route.tsx"),
         route('draft', './pages/Draft/AddDraft.route.tsx'),
         route('publish', './pages/Draft/PublishDraft.route.tsx'),
-        route('auth', './pages/Auth/Auth.route.tsx'),
+        ...prefix('auth', [
+            index('./pages/Auth/SignIn.route.tsx'),
+            route('logout', './pages/Auth/Logout.route.tsx')
+        ]),
     ])
 ] satisfies RouteConfig;

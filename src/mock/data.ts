@@ -4,8 +4,16 @@ import { IsotopeStatus } from '@/entities/Isotope/types';
 export type MockIsotopeDTO = IsotopeDTO & { status: IsotopeStatus };
 
 export const USER = [
-    { id: 1 },
-    { id: 2 }
+    {
+        id: 1,
+        login: 'user_1',
+        password: '1234',
+    },
+    {
+        id: 2,
+        login: 'user_2',
+        password: 'qwerty',
+    }
 ];
 
 export const ISOTOPE = [

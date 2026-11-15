@@ -24,7 +24,7 @@ export const mapIsotopeDTO = (dto: IsotopeDTO): IsotopeView => ({
     ...dto,
     imageUrl: dto.imageUrl === null ? null : resolveMediaUrl(dto.imageUrl),
     videoUrl: dto.videoUrl === null ? null : resolveMediaUrl(dto.videoUrl),
-    halfLife: dto.halfLife === null ? null : BigInt(dto.halfLife),
+    halfLife: dto.halfLife,
     halfLifeFormatted:
         dto.halfLife !== null
             ? formatHalfLifeCompact(BigInt(dto.halfLife))

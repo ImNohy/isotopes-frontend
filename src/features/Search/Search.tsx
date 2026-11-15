@@ -1,9 +1,11 @@
 import './style.scss';
 
-import { useState } from 'react';
+import { Form } from 'react-router';
+
+import { setExponent } from '@/entities/Isotope/model/slice';
+import { useAppDispatch } from '@/shared/redux/hooks';
 
 import type { SearchProps } from "./types";
-
 const EMPTY_STATE_MESSAGE = 'T½, макс. (нс)';
 const BASE = 10n;
 
@@ -11,13 +13,13 @@ export default function Search({
     className,
     maxHalfLifeExponent,
 }: SearchProps) {
-    const [exponent, setExponent] = useState(maxHalfLifeExponent);
-    const hasValue = exponent !== -1;
+    const hasValue = maxHalfLifeExponent !== undefined;
+    const dispatch = useAppDispatch();
 
     return (
-        <form method="get" className={`search ${className}`}>
+        <Form method="get" className={`search ${className}`}>
             <div className="search__value-display">
-                {hasValue ?  `${BASE ** BigInt(exponent)} нс.` : EMPTY_STATE_MESSAGE}
+                {hasValue ? `${BASE ** BigInt(maxHalfLifeExponent)} нс.` : EMPTY_STATE_MESSAGE}
             </div>
             <button className="search__find" type="submit">Найти</button>
 
@@ -30,10 +32,13 @@ export default function Search({
                     min="-1"
                     max="27"
                     step="1"
-                    value={exponent}
-                    onChange={event => setExponent(Number(event.currentTarget.value))}
+                    value={maxHalfLifeExponent}
+                    onChange={event => {
+                        const newExponentValue = Number(event.currentTarget.value);
+                        dispatch(setExponent(newExponentValue === -1 ? undefined : newExponentValue));
+                    }}
                 />
             </div>
-        </form>
+        </Form>
     );
 }

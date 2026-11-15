@@ -1,6 +1,6 @@
 import './style.scss';
 
-import { NavLink } from 'react-router';
+import { Form, NavLink } from 'react-router';
 
 import { makeClassString } from '@/shared/utils/makeClassString';
 
@@ -17,14 +17,29 @@ export default function NavBar({
 
     return (
         <nav className={classes}>
-            {items.map(({ to, iconUrl }) =>
-                <NavLink
-                    key={to}
-                    to={to}
-                    className='navigation__link'
-                >
-                    <div className="navigation__icon" style={{ maskImage: `url("${iconUrl}")` }} />
-                </NavLink>
+            {items.map(({ to, iconUrl, isAction }) =>
+                isAction === undefined
+                    ? (
+                        <NavLink
+                            key={to}
+                            to={to}
+                            className='navigation__link'
+                        >
+                            <div className="navigation__icon" style={{ maskImage: `url("${iconUrl}")` }} />
+                        </NavLink>
+                    )
+                    : (
+                        <Form
+                            key={to}
+                            method="post"
+                            action={to}
+                            className="navigation__form"
+                        >
+                            <button type="submit" className="navigation__link">
+                                <div className="navigation__icon" style={{ maskImage: `url("${iconUrl}")` }} />
+                            </button>
+                        </Form>
+                    )
             )}
         </nav>
     );

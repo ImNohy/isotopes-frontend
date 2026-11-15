@@ -12,6 +12,8 @@
         align-items: center;
         justify-content: center;
         color: var(--text-muted);
+        background-color: transparent;
+        border: none;
 
         &.active {
             color: var(--primary);

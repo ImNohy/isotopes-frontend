@@ -14,7 +14,7 @@ export type IsotopeView = {
     description: string | null;
     imageUrl: string | null;
     videoUrl: string | null;
-    halfLife: bigint | null;
+    halfLife: string | null;
     halfLifeFormatted: {
         compact: string;
         full: string;

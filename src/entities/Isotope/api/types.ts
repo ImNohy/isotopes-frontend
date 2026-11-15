@@ -11,3 +11,9 @@ export type IsotopeDTO = {
     isLiked: boolean;
     isAuthor: boolean;
 }
+
+export type CreateDraftDTO = {
+    name: string;
+    video?: File;
+    image?: File
+}

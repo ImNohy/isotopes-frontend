@@ -1,10 +1,13 @@
 import './style.scss';
 
-import { useState } from 'react';
 import { Link } from 'react-router';
 
+import { LikeAction } from '@/shared/api/api';
+import { useAppDispatch, useAppSelector } from '@/shared/redux/hooks';
 import FallbackImage from '@/shared/ui/FallbackImage/FallbackImage';
 import LikeToggle from '@/shared/ui/LikeToggle/LikeToggle';
+
+import { deleteIsotopeThunk, setLikeThunk } from '../../model/thunks';
 
 import type { IsotopeCardProps } from "./types";
 export default function IsotopeCard({
@@ -16,28 +19,27 @@ export default function IsotopeCard({
     isLiked,
     isAuthor,
 }: IsotopeCardProps) {
-    const [likeState, setLikeState] = useState({
-        liked: isLiked,
-        count: likeCount,
-    });
+    const dispatch = useAppDispatch();
+    const isLoading = useAppSelector(s => s.isotopes.isLoading);
 
-    async function handleLikeClick() {
-        setLikeState(previous => {
-            return {
-                liked: !previous.liked,
-                count: previous.count + (previous.liked ? -1 : 1)
-            };
-        });
+    function handleLikeClick() {
+        dispatch(setLikeThunk({
+            id,
+            action: isLiked ? LikeAction.Value0 : LikeAction.Value1,
+        }));
     }
 
     return (
         <div className="isotope-card">
             {isAuthor && (
-                <form action={`/isotopes/${id}/delete`} method="post">
-                    <button type="submit" className="isotope-card__delete">
-                        <img src="/icons/bin.svg" className="isotope-card__delete-icon" />
-                    </button>
-                </form>
+                <button
+                    type="button"
+                    className="isotope-card__delete"
+                    onClick={() => dispatch(deleteIsotopeThunk(id))}
+                    disabled={isLoading}
+                    >
+                    <img src="/icons/bin.svg" className="isotope-card__delete-icon" />
+                </button>
             )}
 
             <Link to={`/isotopes/feed/${id}`} className="isotope-card__link isotope-card__link--image">
@@ -50,10 +52,11 @@ export default function IsotopeCard({
             <div className="isotope-card__content">
                 <LikeToggle
                     className="isotope-card__like"
-                    isLiked={likeState.liked}
-                    likeCount={likeState.count}
+                    isLiked={isLiked}
+                    likeCount={likeCount}
                     isHorizontal={true}
                     onToggle={handleLikeClick}
+                    disabled={isLoading}
                 />
 
                 <Link to={`/isotopes/feed/${id}`} className="isotope-card__link isotope-card__link--name">

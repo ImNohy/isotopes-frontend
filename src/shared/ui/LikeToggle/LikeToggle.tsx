@@ -10,6 +10,7 @@ export default function LikeToggle({
     isHorizontal = false,
     className = '',
     onToggle,
+    disabled,
 }: LikeToggleProps) {
     const classes = makeClassString(
         'like',
@@ -24,6 +25,7 @@ export default function LikeToggle({
                 type="button"
                 className="like__button"
                 onClick={onToggle}
+                disabled={disabled}
             >
                 <img
                     className="like__icon"

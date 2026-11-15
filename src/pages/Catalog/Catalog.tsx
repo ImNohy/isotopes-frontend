@@ -2,13 +2,12 @@ import './style.scss';
 
 import IsotopeCard from '@/entities/Isotope/ui/IsotopeCard/IsotopeCard';
 import Search from '@/features/Search/Search';
+import { useAppSelector } from '@/shared/redux/hooks';
 
-import type { CatalogPageProps } from "./types";
+export default function CatalogPage() {
+    const isotopes = useAppSelector(s => s.isotopes.isotopes);
+    const maxHalfLifeExponent = useAppSelector(s => s.isotopes.maxHalfLifeExponent);
 
-export default function CatalogPage({
-    isotopes,
-    maxHalfLifeExponent
-}: CatalogPageProps) {
     return (<>
         <section className="catalog">
             <Search

@@ -11,20 +11,16 @@ export type NavItem = {
     to: string;
     iconUrl: string;
     access: Access;
+    isAction?: true;
 };
 
-export const BASE = 'isotopes';
+export const BASE = '/isotopes';
 
 const NAV_ITEMS: NavItem[] = [
     {
         to: 'feed',
         access: Access.Everyone,
         iconUrl: '/icons/home.svg',
-    },
-    {
-        to: 'catalog',
-        access: Access.Everyone,
-        iconUrl: '/icons/grid.svg',
     },
     {
         to: 'draft',
@@ -35,6 +31,17 @@ const NAV_ITEMS: NavItem[] = [
         to: 'auth',
         access: Access.Guest,
         iconUrl: '/icons/profile.svg',
+    },
+    {
+        to: 'catalog',
+        access: Access.Everyone,
+        iconUrl: '/icons/grid.svg',
+    },
+    {
+        to: 'auth/logout',
+        access: Access.Auth,
+        iconUrl: '/icons/exit.svg',
+        isAction: true,
     },
 ]
 

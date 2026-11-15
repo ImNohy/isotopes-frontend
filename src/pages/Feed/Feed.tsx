@@ -1,29 +1,30 @@
 import './style.scss';
 
-import { useState } from 'react';
 import { Link } from 'react-router';
 
+import { setLikeThunk } from '@/entities/Isotope/model/thunks';
+import { LikeAction } from '@/shared/api/api';
+import { useAppDispatch, useAppSelector } from '@/shared/redux/hooks';
 import FallbackVideo from '@/shared/ui/FallbackVideo/FallbackVideo';
 import LikeToggle from '@/shared/ui/LikeToggle/LikeToggle';
 import { makeClassString } from '@/shared/utils/makeClassString';
 
-import type { FeedPageProps } from "./types";
-export default function FeedPage({
-    isotope,
-}: FeedPageProps) {
-    const [likeState, setLikeState] = useState({
-        liked: isotope.isLiked,
-        count: isotope.likeCount,
-    });
+export default function FeedPage() {
+    const dispatch = useAppDispatch();
+    const isLoading = useAppSelector(s => s.isotopes.isLoading);
 
-    async function handleLikeClick() {
-        setLikeState(previous => {
-            return {
-                liked: !previous.liked,
-                count: previous.count + (previous.liked ? -1 : 1)
-            };
-        });
+    const isotope = useAppSelector(s => s.isotopes.selected);
+    if (isotope === null) return null;
+
+    function handleLikeClick() {
+        if (isotope === null) return;
+
+        dispatch(setLikeThunk({
+            id: isotope.id,
+            action: isotope.isLiked ? LikeAction.Value0 : LikeAction.Value1,
+        }))
     }
+
     return (<>
         <FallbackVideo
             src={isotope.videoUrl}
@@ -41,9 +42,10 @@ export default function FeedPage({
             <div className="isotope-page__meta meta">
                 <LikeToggle
                     className="meta__like"
-                    isLiked={likeState.liked}
-                    likeCount={likeState.count}
+                    likeCount={isotope.likeCount}
                     onToggle={handleLikeClick}
+                    isLiked={isotope.isLiked}
+                    disabled={isLoading}
                 />
 
                 <div className={makeClassString(
