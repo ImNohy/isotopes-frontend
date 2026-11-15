@@ -29,17 +29,10 @@ export async function clientAction({
 }: Route.ClientActionArgs) {
     const rawData = await request.formData();
 
-    console.log(rawData);
-    
     const mappedData = mapFormData<CreateDraftDTO>(rawData, [
         {
             key: 'video',
-            map: (file) => {
-                console.log(file);
-                console.log(file instanceof File && file.size > 0 );
-
-
-                 return file instanceof File && file.size > 0 ? file : undefined }
+            map: (file) => file instanceof File && file.size > 0 ? file : undefined
         },
         {
             key: 'image',
