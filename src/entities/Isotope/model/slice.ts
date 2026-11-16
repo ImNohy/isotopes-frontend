@@ -8,6 +8,7 @@ import {
 import type { PayloadAction } from '@reduxjs/toolkit';
 
 import type { IsotopeView } from '../types';
+
 type IsotopeState = {
     maxHalfLifeExponent?: number;
 

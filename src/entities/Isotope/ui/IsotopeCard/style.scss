@@ -21,6 +21,9 @@
 
     &__name {
         color: currentColor;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
     }
 
     &__link {
@@ -30,9 +33,13 @@
         }
 
         &--name {
+            display: block;
             color: var(--text-main);
+            text-overflow: ellipsis;
             text-decoration: none;
+            white-space: nowrap;
             transition: color var(--transition-short) var(--transition-timing-function);
+            overflow: hidden;
         }
     }
 

@@ -11,7 +11,7 @@
     &__list {
         display: grid;
         padding-bottom: 20px;
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 20px;
         overflow-y: auto;
 
@@ -19,4 +19,9 @@
             background-color: transparent;
         }
     }
+
+    &__item {
+        min-width: 0;
+    }
+
 }
