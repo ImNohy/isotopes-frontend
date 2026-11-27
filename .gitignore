@@ -1,5 +1,6 @@
 .react-router/
 build/
+dev-dist/
 
 # Logs
 logs

@@ -1,10 +1,48 @@
 import * as path from 'path';
-import { reactRouter } from "@react-router/dev/vite";
-import { defineConfig } from 'vite'
+import { defineConfig } from 'vite';
+import { VitePWA } from 'vite-plugin-pwa';
+
+import { reactRouter } from '@react-router/dev/vite';
 
 // https://vite.dev/config/
 export default defineConfig({
-    plugins: [reactRouter()],
+    plugins: [
+        reactRouter(),
+        VitePWA({
+            registerType: 'autoUpdate',
+            outDir: 'build/client',
+            workbox: {
+                globDirectory: 'build/client',
+                globPatterns: ["**/*.{js,css,html,ico,png,svg,webmanifest}"],
+            },
+            devOptions: {
+                enabled: true,
+            },
+            manifest: {
+                name: "Isotopes",
+                short_name: "Isotopes",
+                start_url: "/isotopes-frontend/",
+                display: "standalone",
+                background_color: "#0C1A2A",
+                theme_color: "#9AEB36",
+                lang: 'ru',
+                scope: "/isotopes-frontend/",
+                orientation: "portrait-primary",
+                icons: [
+                    {
+                        "src": "pwa/logo192.png",
+                        "type": "image/png",
+                        "sizes": "192x192"
+                    },
+                    {
+                        "src": "pwa/logo512.png",
+                        "type": "image/png",
+                        "sizes": "512x512"
+                    }
+                ],
+            },
+        })
+    ],
     base: "/isotopes-frontend/",
     resolve: {
         alias: {

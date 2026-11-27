@@ -48,6 +48,7 @@ export default function App() {
                 <meta charSet="UTF-8" />
                 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
                 <link rel="shortcut icon" href={resolveStaticPath('favicon.ico')} type="image/x-icon" />
+                <link rel="manifest" href={resolveStaticPath('manifest.webmanifest')} />
 
                 <Meta />
                 <Links />
