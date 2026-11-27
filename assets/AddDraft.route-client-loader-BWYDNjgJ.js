@@ -1,1 +1,0 @@
-import{D as e}from"./utils-2hpALJ3p.js";import{l as t,t as n}from"./store-Dcc7d7Yl.js";import{t as r}from"./navigation-DqvaMf_z.js";async function i(){return await n.dispatch(t()).unwrap()?e(`${r}/publish`):null}export{i as clientLoader};

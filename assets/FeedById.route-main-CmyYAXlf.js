@@ -1,0 +1,1 @@
+import{o as e,t}from"./jsx-runtime-CYzhoIXH.js";import{t as n}from"./Feed-DRW7GKN5.js";import"./FeedById.route-client-loader-DHBgemov.js";var r=t(),i={pageClass:`page--feed isotope-page`},a=e(function(){return(0,r.jsx)(n,{})});export{a as default,i as handle};
