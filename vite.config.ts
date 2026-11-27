@@ -1,13 +1,19 @@
 import * as path from 'path';
 import { defineConfig } from 'vite';
+import mkcert from 'vite-plugin-mkcert';
 import { VitePWA } from 'vite-plugin-pwa';
 
 import { reactRouter } from '@react-router/dev/vite';
 
 // https://vite.dev/config/
-export default defineConfig({
+export default defineConfig(({ command, isPreview}) => ({
     plugins: [
         reactRouter(),
+        command === 'serve' && !isPreview
+            ? mkcert({
+                hosts: ["localhost", "127.0.0.1", "192.168.43.93"],
+            })
+            : null,
         VitePWA({
             registerType: 'autoUpdate',
             outDir: 'build/client',
@@ -62,4 +68,4 @@ export default defineConfig({
             },
         }
     }
-})
+}))
