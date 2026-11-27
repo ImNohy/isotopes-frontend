@@ -1,0 +1,1 @@
+function e(e,t){return t.reduce((t,n)=>(t[n.key]=n.map(e.get(n.key)),t),{})}export{e as t};

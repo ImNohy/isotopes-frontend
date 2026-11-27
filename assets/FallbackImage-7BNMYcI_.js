@@ -1,0 +1,1 @@
+import{f as e}from"./slice-DqxyzmyO.js";import{V as t}from"./utils-2hpALJ3p.js";import{t as n}from"./jsx-runtime-CYzhoIXH.js";var r=e(t(),1),i=n();function a({src:e=null,fallbackSrc:t,className:n,...a}){let[o,s]=(0,r.useState)(null),c=!e||o===e;return(0,i.jsx)(`img`,{src:c?t:e,className:n,onError:()=>{e&&!c&&s(e)},...a})}export{a as t};

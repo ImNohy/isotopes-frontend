@@ -1,0 +1,1 @@
+import{g as e}from"./store-Dcc7d7Yl.js";var t=e.create({baseURL:`/api`,withCredentials:!0});async function n(e){try{let{data:n}=await t.post(`/auth/login`,e);return{userId:n.userId}}catch{return null}}async function r(){try{return await t.post(`/auth/logout`,null),!0}catch{return!1}}export{r as n,n as t};

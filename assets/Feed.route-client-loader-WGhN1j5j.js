@@ -1,0 +1,1 @@
+import{u as e}from"./utils-2hpALJ3p.js";import{f as t,t as n}from"./store-Dcc7d7Yl.js";async function r(){if(await n.dispatch(t(0)).unwrap()===null)throw e(null,{statusText:`Изотоп не найден`,status:404});return null}export{r as clientLoader};

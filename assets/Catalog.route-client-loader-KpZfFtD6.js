@@ -1,0 +1,1 @@
+import{d as e,i as t,t as n}from"./store-Dcc7d7Yl.js";async function r({request:r}){let i=new URL(r.url).searchParams.get(`maxHalfLifeExponent`),a=i===null?-1:Number(i),o=Number.isInteger(a)&&a>-1&&a<=27?a:void 0;return n.dispatch(t(o)),await n.dispatch(e()).unwrap(),null}export{r as clientLoader};

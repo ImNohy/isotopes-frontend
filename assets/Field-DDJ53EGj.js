@@ -1,0 +1,1 @@
+import{t as e}from"./jsx-runtime-CYzhoIXH.js";import{t}from"./makeClassString-DPKkegd9.js";var n=e();function r({label:e,className:r,id:i,...a}){return(0,n.jsx)(n.Fragment,{children:(0,n.jsxs)(`div`,{className:t(`field`,r),children:[e&&(0,n.jsx)(`label`,{htmlFor:i,className:`field__label`,children:e}),(0,n.jsx)(`input`,{className:`field__input`,id:i,...a})]})})}export{r as t};

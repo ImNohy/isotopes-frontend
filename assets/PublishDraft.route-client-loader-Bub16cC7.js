@@ -1,0 +1,1 @@
+import{D as e}from"./utils-2hpALJ3p.js";import{l as t,t as n}from"./store-Dcc7d7Yl.js";import{t as r}from"./navigation-DqvaMf_z.js";async function i(){try{if(!await n.dispatch(t()).unwrap())return e(`${r}/draft`)}catch{}return null}export{i as clientLoader};
