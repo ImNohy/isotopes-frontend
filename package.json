@@ -8,13 +8,15 @@
         "build": "tsc -b && vite build",
         "lint": "eslint .",
         "preview": "vite preview",
-        "generate-api": "node generate-api.ts"
+        "generate-api": "node generate-api.ts",
+        "deploy": "cp build/client/index.html build/client/404.html && gh-pages -d build/client --nojekyll --repo git@github.com:ImNohy/isotopes-frontend.git"
     },
     "dependencies": {
         "@react-router/node": "^8.5.1",
         "@react-router/serve": "^8.5.1",
         "@reduxjs/toolkit": "^2.14.0",
         "axios": "^1.21.1",
+        "gh-pages": "^6.3.0",
         "isbot": "^5.2.2",
         "react": "^19.3.1",
         "react-dom": "^19.3.1",
