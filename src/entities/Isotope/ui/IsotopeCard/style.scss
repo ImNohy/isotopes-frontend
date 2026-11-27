@@ -3,6 +3,7 @@
 
     position: relative;
     display: flex;
+    min-width: 250px;
     flex-direction: column;
     background-color: var(--surface-1);
     border: 1px solid var(--border-main);
