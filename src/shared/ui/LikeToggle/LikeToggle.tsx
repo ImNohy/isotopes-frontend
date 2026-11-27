@@ -1,9 +1,9 @@
 import './style.scss';
 
 import { makeClassString } from '@/shared/utils/makeClassString';
+import { resolveStaticPath } from '@/shared/utils/resolveStaticPath';
 
 import type { LikeToggleProps } from './types';
-
 export default function LikeToggle({
     isLiked,
     likeCount,
@@ -29,7 +29,9 @@ export default function LikeToggle({
             >
                 <img
                     className="like__icon"
-                    src={isLiked ? "/icons/heart-solid.svg" : "/icons/heart-outline.svg"}
+                    src={isLiked
+                        ? resolveStaticPath("icons/heart-solid.svg")
+                        : resolveStaticPath("icons/heart-outline.svg")}
                 />
             </button>
             <span className='like__label'>{likeCount}</span>

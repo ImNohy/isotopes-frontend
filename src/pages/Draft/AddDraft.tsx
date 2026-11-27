@@ -6,6 +6,7 @@ import { Form } from 'react-router';
 import FallbackImage from '@/shared/ui/FallbackImage/FallbackImage';
 import FallbackVideo from '@/shared/ui/FallbackVideo/FallbackVideo';
 import Field from '@/shared/ui/Field/Field';
+import { resolveStaticPath } from '@/shared/utils/resolveStaticPath';
 
 export default function AddDraftPage() {
     const [videoUrl, setVideoUrl] = useState<string | null>(null);
@@ -53,7 +54,7 @@ export default function AddDraftPage() {
 
                 <FallbackVideo
                     src={videoUrl}
-                    fallbackSrc="/assets/isotope.mp4"
+                    fallbackSrc={resolveStaticPath("/assets/isotope.mp4")}
                     className="form__media-preview"
                     controls={true}
                     muted={true}
@@ -74,7 +75,7 @@ export default function AddDraftPage() {
 
                 <FallbackImage
                     src={imageUrl}
-                    fallbackSrc="/assets/isotope.png"
+                    fallbackSrc={ resolveStaticPath('/assets/isotope.png') }
                     className="form__media-preview"
                 />
             </div>

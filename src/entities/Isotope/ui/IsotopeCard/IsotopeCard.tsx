@@ -6,6 +6,7 @@ import { LikeAction } from '@/shared/api/api';
 import { useAppDispatch, useAppSelector } from '@/shared/redux/hooks';
 import FallbackImage from '@/shared/ui/FallbackImage/FallbackImage';
 import LikeToggle from '@/shared/ui/LikeToggle/LikeToggle';
+import { resolveStaticPath } from '@/shared/utils/resolveStaticPath';
 
 import { deleteIsotopeThunk, setLikeThunk } from '../../model/thunks';
 
@@ -37,16 +38,16 @@ export default function IsotopeCard({
                     className="isotope-card__delete"
                     onClick={() => dispatch(deleteIsotopeThunk(id))}
                     disabled={isLoading}
-                    >
-                    <img src="/icons/bin.svg" className="isotope-card__delete-icon" />
+                >
+                    <img src={resolveStaticPath('/icons/bin.svg')} className="isotope-card__delete-icon" />
                 </button>
             )}
 
             <Link to={`/isotopes/feed/${id}`} className="isotope-card__link isotope-card__link--image">
                 <FallbackImage
                     src={imageUrl}
-                    fallbackSrc="/assets/isotope.png"
-                    className="isotope-card__image"
+                    fallbackSrc={ resolveStaticPath('/assets/isotope.png') }
+                className="isotope-card__image"
                 />
             </Link>
             <div className="isotope-card__content">

@@ -8,6 +8,7 @@ import { useAppDispatch, useAppSelector } from '@/shared/redux/hooks';
 import FallbackVideo from '@/shared/ui/FallbackVideo/FallbackVideo';
 import LikeToggle from '@/shared/ui/LikeToggle/LikeToggle';
 import { makeClassString } from '@/shared/utils/makeClassString';
+import { resolveStaticPath } from '@/shared/utils/resolveStaticPath';
 
 export default function FeedPage() {
     const dispatch = useAppDispatch();
@@ -28,7 +29,7 @@ export default function FeedPage() {
     return (<>
         <FallbackVideo
             src={isotope.videoUrl}
-            fallbackSrc="/assets/isotope.mp4"
+            fallbackSrc={resolveStaticPath("/assets/isotope.mp4")}
             className="isotope-page__video"
             autoPlay={true}
             loop={true}
@@ -54,9 +55,12 @@ export default function FeedPage() {
                     'radiation-type',
                     isotope.isAlpha && 'radiation-type--alpha',
                 )}>
-                    <img src="/icons/alpha.svg" className="property-display__label-icon" />
+                    <img src={resolveStaticPath('/icons/alpha.svg')} className="property-display__label-icon" />
                     <div className="property-display__value radiation-type__value">
-                        <img src={isotope.isAlpha ? '/icons/check.svg' : '/icons/cross.svg'} />
+                        <img src={isotope.isAlpha
+                            ? resolveStaticPath('/icons/check.svg')
+                            : resolveStaticPath('/icons/cross.svg')}
+                        />
                     </div>
                 </div>
 
@@ -70,7 +74,7 @@ export default function FeedPage() {
                 </div>
 
                 <Link to={`/isotopes/feed/${isotope.id}?next=true`} className="meta__next next-button">
-                    <img src="/icons/chevrons-right.svg" className="next-button__icon" />
+                    <img src={resolveStaticPath('/icons/chevrons-right.svg')} className="next-button__icon" />
                 </Link>
             </div>
 

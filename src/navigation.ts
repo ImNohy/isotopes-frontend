@@ -1,3 +1,5 @@
+import { resolveStaticPath } from './shared/utils/resolveStaticPath';
+
 export const Access = {
     Everyone: 0,
     Guest: 1,
@@ -20,27 +22,27 @@ const NAV_ITEMS: NavItem[] = [
     {
         to: 'feed',
         access: Access.Everyone,
-        iconUrl: '/icons/home.svg',
+        iconUrl: resolveStaticPath('/icons/home.svg'),
     },
     {
         to: 'draft',
         access: Access.Auth,
-        iconUrl: '/icons/circle-plus.svg',
+        iconUrl: resolveStaticPath('/icons/circle-plus.svg'),
     },
     {
         to: 'auth',
         access: Access.Guest,
-        iconUrl: '/icons/profile.svg',
+        iconUrl: resolveStaticPath('/icons/profile.svg'),
     },
     {
         to: 'catalog',
         access: Access.Everyone,
-        iconUrl: '/icons/grid.svg',
+        iconUrl: resolveStaticPath('/icons/grid.svg'),
     },
     {
         to: 'auth/logout',
         access: Access.Auth,
-        iconUrl: '/icons/exit.svg',
+        iconUrl: resolveStaticPath('/icons/exit.svg'),
         isAction: true,
     },
 ]

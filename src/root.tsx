@@ -11,6 +11,7 @@ import NavBar from './features/NavBar/NavBar';
 import { getVisibleNavItems } from './navigation';
 import { useAppDispatch, useAppSelector } from './shared/redux/hooks';
 import { makeClassString } from './shared/utils/makeClassString';
+import { resolveStaticPath } from './shared/utils/resolveStaticPath';
 
 type ShellClasses = {
     pageClass?: string;
@@ -46,7 +47,7 @@ export default function App() {
                 <meta name="color-scheme" content="dark" />
                 <meta charSet="UTF-8" />
                 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-                <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+                <link rel="shortcut icon" href={resolveStaticPath('favicon.ico')} type="image/x-icon" />
 
                 <Meta />
                 <Links />
