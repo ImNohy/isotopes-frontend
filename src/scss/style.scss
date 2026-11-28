@@ -35,9 +35,9 @@ p {
 }
 
 body {
-    width: fit-content;
+    display: flex;
     height: 100dvh;
-    margin: 0 auto;
+    justify-content: center;
     overflow: hidden;
 }
 

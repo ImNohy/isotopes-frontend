@@ -3,10 +3,7 @@ import './style.scss';
 import { useEffect, useState } from 'react';
 import { Form } from 'react-router';
 
-import FallbackImage from '@/shared/ui/FallbackImage/FallbackImage';
-import FallbackVideo from '@/shared/ui/FallbackVideo/FallbackVideo';
 import Field from '@/shared/ui/Field/Field';
-import { resolveStaticPath } from '@/shared/utils/resolveStaticPath';
 
 export default function AddDraftPage() {
     const [videoUrl, setVideoUrl] = useState<string | null>(null);
@@ -52,9 +49,8 @@ export default function AddDraftPage() {
                     onChange={handleVideoChange}
                 />
 
-                <FallbackVideo
-                    src={videoUrl}
-                    fallbackSrc={resolveStaticPath("/assets/isotope.mp4")}
+                <video
+                    src={videoUrl || ''}
                     className="form__media-preview"
                     controls={true}
                     muted={true}
@@ -73,9 +69,8 @@ export default function AddDraftPage() {
                     onChange={handleImageChange}
                 />
 
-                <FallbackImage
-                    src={imageUrl}
-                    fallbackSrc={ resolveStaticPath('/assets/isotope.png') }
+                <img
+                    src={imageUrl || ''}
                     className="form__media-preview"
                 />
             </div>
@@ -92,7 +87,7 @@ export default function AddDraftPage() {
                 required={true}
             />
 
-            <button className="form__submit" type="submit">Сохранить</button>
+            <button className="form__submit" type="submit">Создать черновик</button>
         </Form>
     </>);
 }

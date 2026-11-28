@@ -28,6 +28,10 @@
         }
     }
 
+    &__media-header {
+        margin-bottom: -8px;
+    }
+
     &__media-preview {
         height: 200px;
         background-color: var(--surface-field);
